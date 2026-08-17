@@ -1,4 +1,4 @@
-# ZD-MAST v1.0.0-rc1 code validation report
+# ZD-MAST v1.0.0-rc2 code validation report
 
 Status: **PASS FOR PRIVATE GITHUB RELEASE-CANDIDATE REVIEW**
 

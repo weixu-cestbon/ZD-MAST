@@ -7,10 +7,20 @@ sites:
     internal_alias: site_a
     public_name: Zhongda Hospital main campus
     maldi_platform: bioMérieux VITEK MS
+    ast_platform: VITEK 2
+    current_ast_software_audit:
+      audit_date: 2026-08-17
+      vitek_2_systems: "9"
+      client_core: 9.02.4.531
+      aes_components: 2.0.0
+      myla_connector: 1.0.0.1
+      scope: post-cohort current configuration; not a row-level historical assignment
   ZD-MAST-B:
     internal_alias: site_b
     public_name: Zhongda Hospital Jiangbei campus
     maldi_platform: Autobio Autof MS600
+    ast_platform: VITEK 2
+    ast_software_build: not available in the public release metadata
 shared_ast_framework:
   platform: VITEK 2
   status: laboratory-verified shared workflow

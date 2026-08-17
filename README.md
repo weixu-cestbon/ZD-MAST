@@ -11,7 +11,7 @@ predictions, vendor-native files or third-party benchmark data.
 
 ## Release status
 
-- Code candidate: `v1.0.0-rc1`
+- Code candidate: `v1.0.0-rc2`
 - Scientific data candidate: `v1.0.0-rc17`
 - Scientific-data base: `v1.0.0-rc2`
 - Outer deposition version: recorded in the repository landing page and

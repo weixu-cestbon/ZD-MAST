@@ -1,6 +1,6 @@
 # Manuscript v6 analysis addendum
 
-The review-facing utilities added in v1.0.0-rc1 address bounded methodological
+The review-facing utilities introduced in v1.0.0-rc1 and retained in v1.0.0-rc2 address bounded methodological
 questions without changing the historical task panel or selecting a model from
 target performance.
 
@@ -18,3 +18,10 @@ target performance.
 Scripts that can write row-level predictions do so only when explicitly
 requested. Those outputs are ignored by Git and are not part of the public
 repository or companion data release.
+
+The current ZD-MAST-A VITEK 2 console configuration was audited after cohort
+closure as VITEK 2 Systems version 9, Client/Core 9.02.4.531, AES components
+2.0.0 and Myla Connector 1.0.0.1. These values are metadata for the audited
+current configuration; they are not assigned retrospectively to individual
+historical AST rows. The exact ZD-MAST-B software build is not available in the
+public release metadata.

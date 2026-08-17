@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.0.0-rc2 - 2026-08-17
+
+### Changed
+
+- Added the post-cohort ZD-MAST-A VITEK 2 software-console audit metadata:
+  VITEK 2 Systems version 9, Client/Core 9.02.4.531, AES components 2.0.0 and
+  Myla Connector 1.0.0.1.
+- Explicitly limited those build numbers to the audited current Site A
+  configuration; historical row-level installation dates and the exact
+  ZD-MAST-B software build remain unavailable.
+
+### Validation
+
+- No scientific result, data row, task definition, split or feature value was
+  changed.
+
 ## v1.0.0-rc1 - 2026-08-17
 
 ### Added

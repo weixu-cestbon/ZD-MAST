@@ -3,7 +3,7 @@
 This repository is a review candidate and must not yet be described as a final
 public release.
 
-Candidate version: `v1.0.0-rc1`. This candidate records the Apache-2.0 software
+Candidate version: `v1.0.0-rc2`. This candidate records the Apache-2.0 software
 license, the planned clean GitHub repository URL and the reserved Zenodo DOI for the
 `v1.0.0-rc17` scientific data candidate. Expected ten-task scientific results
 remain unchanged.

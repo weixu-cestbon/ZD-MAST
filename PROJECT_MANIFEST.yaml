@@ -2,7 +2,7 @@ project:
   repository: ZD-MAST
   package: zd_mast
   cli: zd-mast
-  code_version: v1.0.0-rc1
+  code_version: v1.0.0-rc2
 dataset:
   short_name: ZD-MAST
   scientific_candidate: v1.0.0-rc17
@@ -14,9 +14,13 @@ sites:
   ZD-MAST-A:
     public_name: Zhongda Hospital main campus
     platform: bioMérieux VITEK MS
+    ast_platform: VITEK 2
+    current_ast_software: VITEK 2 Systems 9; Client/Core 9.02.4.531; AES 2.0.0
   ZD-MAST-B:
     public_name: Zhongda Hospital Jiangbei campus
     platform: Autobio Autof MS600
+    ast_platform: VITEK 2
+    ast_software: shared workflow verified; exact build unavailable
 feature_representations:
   - intensity6000
   - peak_presence6000
