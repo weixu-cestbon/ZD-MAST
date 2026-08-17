@@ -1,0 +1,120 @@
+{
+  "analysis_id": "task_universe_selection_audit",
+  "analysis_version": "reviewer-r1-v1",
+  "purpose": "Performance-independent support audit of the historical ten-task evaluation panel",
+  "scope": {
+    "site_ids": ["ZD-MAST-A"],
+    "year_min": 2019,
+    "year_max": 2025,
+    "endpoint": "reported historical S versus I/R",
+    "identity_rule": "exact reported organism plus exact antimicrobial code and name after Unicode-width, case and whitespace normalization only"
+  },
+  "support_thresholds": {
+    "min_total": 300,
+    "min_class": 50,
+    "min_years": 2
+  },
+  "columns": {
+    "sample": "public_sample_id",
+    "site": "site_id",
+    "year": "year",
+    "organism": "organism_reported",
+    "antimicrobial_code": "antimicrobial_code_reported",
+    "antimicrobial_name": "antimicrobial_name_reported",
+    "sir": "reported_sir",
+    "conflict": "conflict_flag",
+    "core_task": "task_id_if_core",
+    "feature_availability": "feature_row"
+  },
+  "historical_core_panel": [
+    {
+      "task_id": "sa_oxa",
+      "organism": "Staphylococcus aureus",
+      "antimicrobial": "oxacillin",
+      "historical_provenance_category": "literature_anchor",
+      "historical_provenance_note": "Historical canonical benchmark carried forward from the literature-facing panel.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "kp_cro",
+      "organism": "Klebsiella pneumoniae",
+      "antimicrobial": "ceftriaxone",
+      "historical_provenance_category": "literature_anchor",
+      "historical_provenance_note": "Historical canonical benchmark carried forward from the literature-facing panel.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "ec_cro",
+      "organism": "Escherichia coli",
+      "antimicrobial": "ceftriaxone",
+      "historical_provenance_category": "literature_anchor",
+      "historical_provenance_note": "Historical canonical benchmark carried forward from the literature-facing panel.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "sa_lvx",
+      "organism": "Staphylococcus aureus",
+      "antimicrobial": "levofloxacin",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "sa_gen",
+      "organism": "Staphylococcus aureus",
+      "antimicrobial": "gentamicin",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "kp_fep",
+      "organism": "Klebsiella pneumoniae",
+      "antimicrobial": "cefepime",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "kp_caz",
+      "organism": "Klebsiella pneumoniae",
+      "antimicrobial": "ceftazidime",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "kp_cip",
+      "organism": "Klebsiella pneumoniae",
+      "antimicrobial": "ciprofloxacin",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "ec_cip",
+      "organism": "Escherichia coli",
+      "antimicrobial": "ciprofloxacin",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    },
+    {
+      "task_id": "ec_fep",
+      "organism": "Escherichia coli",
+      "antimicrobial": "cefepime",
+      "historical_provenance_category": "local_extension",
+      "historical_provenance_note": "Historical local extension; this category does not imply performance-based or prospective selection.",
+      "original_human_selection_evidence": ""
+    }
+  ],
+  "author_input_policy": {
+    "default_reason": "The released data and code recover panel membership and support, but not the complete contemporaneous human deliberation, citation choice or ranking rationale. Author documentation is required before making a stronger selection claim."
+  },
+  "interpretation_guardrails": {
+    "model_training": false,
+    "performance_based_selection": false,
+    "prospective_selection_claim": false,
+    "allowed_description": "historical ten-task evaluation panel mapped retrospectively to a performance-independent support universe"
+  }
+}

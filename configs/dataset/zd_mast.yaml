@@ -1,0 +1,20 @@
+dataset:
+  short_name: ZD-MAST
+  full_name: Zhongda MALDI-TOF Antimicrobial Susceptibility and Transportability
+  public_title: "ZD-MAST: a two-site, two-platform MALDI-TOF mass spectra and antimicrobial susceptibility benchmark"
+sites:
+  ZD-MAST-A:
+    internal_alias: site_a
+    public_name: Zhongda Hospital main campus
+    maldi_platform: bioMérieux VITEK MS
+  ZD-MAST-B:
+    internal_alias: site_b
+    public_name: Zhongda Hospital Jiangbei campus
+    maldi_platform: Autobio Autof MS600
+shared_ast_framework:
+  platform: VITEK 2
+  status: laboratory-verified shared workflow
+release:
+  feature_candidate: feature-release-v1.0.0-rc17
+  peak_table_candidate: peak-table-release-v1.0.0-rc17
+  public_distribution_status: author-approved; reserved Zenodo record pending author publication

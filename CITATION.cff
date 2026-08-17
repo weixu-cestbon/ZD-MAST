@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use ZD-MAST or this software, cite the associated dataset and manuscript."
+title: "ZD-MAST benchmark"
+type: software
+version: "1.0.0-rc1"
+license: Apache-2.0
+repository-code: "https://github.com/weixu-cestbon/ZD-MAST"
+authors:
+  - family-names: Xu
+    given-names: Wei
+  - family-names: Yuan
+    given-names: Chenyan
+  - family-names: Chen
+    given-names: Mingxia
+  - family-names: Wang
+    given-names: Yunyi
+  - family-names: Zhang
+    given-names: Yue
+  - family-names: Wu
+    given-names: Guoqiu
+abstract: "Reproducibility code for a two-site, two-platform MALDI-TOF and antimicrobial susceptibility benchmark."
+references:
+  - type: dataset
+    title: "ZD-MAST: a two-site, two-platform MALDI-TOF mass spectra and antimicrobial susceptibility benchmark"
+    doi: "10.5281/zenodo.21927440"

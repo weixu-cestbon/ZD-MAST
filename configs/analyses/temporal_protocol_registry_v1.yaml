@@ -1,0 +1,84 @@
+audit_id: temporal_protocol_reconciliation_v1
+publication_gate: NEEDS_REVISION
+scope: >-
+  Forensic reconciliation of historical calendar-time, workflow-era, current-workflow,
+  grouping-sensitivity, and cross-platform temporal protocols. This registry is read-only
+  with respect to source data, scripts, result tables, and manuscript files.
+
+estimands:
+  - id: calendar_year_rolling_benchmark
+    role: secondary_longitudinal_robustness
+    test_years: [2022, 2023, 2024, 2025]
+    development_rule: train only on dates before the named test year
+    grouping_rule: patient_grouped_or_purged_required_for_reviewer_grade
+    tuning_rule: train_only_tuning_calibration_and_thresholds
+    legacy_comparator: historical_task_last20
+  - id: current_workflow_protocol_b
+    role: primary_deployment_relevant_oot
+    workflow_marker: 2025-06-23
+    transition_exclusion: 2025-06-23 to 2025-06-30
+    development: 2025-07-01 to 2026-02-28
+    test: 2026-03-01 to 2026-06-09
+    primary_grouping: all_sample_workload
+    sensitivity_groupings: [patient_disjoint_test, patient_species_30_day_episode_first]
+    feature_rule: retain_the_registered_representation_and_do_not_mix_intensity6000_with_peak_presence6000
+
+calendar_year_rolling_requirements:
+  task_panel: historical_ten_task_evaluation_panel
+  endpoint: historical_S_vs_IR
+  feature_representation: intensity6000
+  task_selection: fixed_before_evaluation_never_result_selected
+  interpretation: total_temporal_transportability_including_epidemiology_workflow_and_data_route_drift
+  causal_card_attribution: prohibited
+
+marker_protocol_interpretation:
+  protocol_family: marker_based_workflow_era
+  marker: 2025-06-23_operational_workflow_transition_marker
+  allowed_wording: marker_associated_shift_only
+  causal_card_attribution: prohibited
+
+patient_episode_sensitivity:
+  status: completed_reproduced_sensitivity
+  metrics_source: results/audits/patient_episode_sensitivity_reproduction_v1/zd_mast_patient_episode_sensitivity_metrics_v1.0.0.csv
+  report_source: docs/PATIENT_EPISODE_REPRODUCTION_REPORT.md
+  config_source: configs/analyses/patient_episode_sensitivity.yaml
+  patient_disjoint: reuse_all_sample_primary_model_and_filter_test_records_with_patient_overlap; not_patient_purged_model_fitting
+  episode_first: fix_primary_hyperparameters_and_refit_with_development_only_calibration_and_thresholds
+  primary_change_rerun: required_only_if_patient_disjoint_becomes_primary_fitted_estimand
+
+legacy_protocols:
+  - id: historical_task_last20
+    source_script: ../../scripts/maldi_bridge/build_local_full6000_after_passport_and_train_v1.py
+    source_results: ../../results/tables/cleanroom_current/local_model_results_full6000_v1.csv
+    role: historical_comparator
+  - id: m100_strict_temporal_2019_2025
+    source_script: ../../scripts/maldi_bridge/run_m100_card_era_addon_v1.py
+    source_results: ../../results/tables/cleanroom_current/m100_label_sensitivity_model_results_v1.csv
+    role: M100_label_sensitivity
+    limitation: legacy_strict_split_omits_final_historical_20_percent_from_fitted_holdout_development_objects
+  - id: early_workflow_card_era
+    source_script: ../../scripts/maldi_bridge/run_m100_card_era_addon_v1.py
+    transition_rule: plus_or_minus_61_days_around_2025-06-23
+    role: workflow_era_sensitivity_only
+  - id: oxacillin_current_card_monthly
+    source_script: ../../scripts/maldi_bridge/run_sa_oxacillin_monthly_current_card_v1.py
+    transition_rule: calendar_june_2025
+    role: task_specific_sensitivity_only
+
+implementation_comparison:
+  id: protocol_b_implementation_comparison_jul14_vs_jul17
+  jul14_results: ../../output/server_sync_private/maldi_ast_canonical_v2_rerun_20260714/tables/canonical_v2_model_results_v1.csv
+  jul17_results: ../../maldi_ast_version_reconciliation_20260718/artifact_inventory/server_current_evidence_20260717/tables/crossfit_refit_temporal_results_v1.csv
+  date_definitions: identical_task_by_task
+  n_test: identical_task_by_task
+  selected_hyperparameters: all_ten_tasks_differ
+  auroc_delta_jul17_minus_jul14: min_-0.03453_max_0.10101_median_-0.01078
+  interpretation: implementation_and_model_selection_difference_not_date_difference
+
+manuscript_rules:
+  historical_resource_denominator: 2019-2025_available_resource_context
+  protocol_b_development_denominator: 2025-07-01_to_2026-02-28
+  protocol_b_test_denominator: 2026-03-01_to_2026-06-09
+  patient_disjoint_and_episode_first: sensitivities_not_primary_all_sample_protocol_b
+  rolling_summary_count: distinct_calendar_years_or_evaluation_cells_not_repeated_threshold_rows
+  cross_platform_comparison: current_workflow_source_only_and_like_for_like_representation_required

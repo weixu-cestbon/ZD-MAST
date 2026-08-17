@@ -1,0 +1,72 @@
+analysis_id: current_contract_logistic_sensitivity
+analysis_version: reviewer-r9-v1
+purpose: reviewer_requested_current_contract_linear_baseline
+
+model:
+  model_id: logistic_regression
+  penalty: l2
+  solver: liblinear
+  max_iter: 5000
+  tolerance: 0.0001
+  standardization:
+    transformer: StandardScaler
+    with_mean: false
+    fit_scope: each_development_fold_then_full_development
+  grid:
+    C: [0.01, 0.1, 1.0, 10.0]
+    class_weight: [none, balanced]
+  selection_objective: median_AUROC_plus_0.05_times_median_AUPRC
+
+endpoint:
+  name: historical_s_vs_ir
+  negative_class: S
+  positive_classes: [I, R]
+
+protocol_families:
+  annual_patient_purged:
+    loader: zd_mast.temporal_revision.load_annual_inputs
+    cohort_builder: zd_mast.temporal_revision.build_annual_cohort
+    feature_representation: intensity6000
+    primary_test: patient_disjoint_primary
+    sensitivity_test: all_sample_sensitivity
+    test_years: [2022, 2023, 2024, 2025]
+  same_test_training_history:
+    loader: zd_mast.training_history.load_training_history_inputs
+    cohort_builder: zd_mast.training_history.build_history_cohorts
+    feature_representation: intensity6000
+    primary_test: patient_disjoint_common_test_primary
+    sensitivity_test: all_sample_common_test_sensitivity
+    training_regimes:
+      - pre_marker_history_only
+      - current_workflow_only
+      - pooled_pre_and_current
+  cross_platform_source_only:
+    loader: zd_mast.cross_platform.load_analysis_inputs
+    cohort_builder: zd_mast.cross_platform.build_task_cohorts
+    feature_representation: peak_presence6000
+    training_site: ZD-MAST-A
+    target_site: ZD-MAST-B
+    source_primary_test: site_a_test_patient_disjoint
+    source_sensitivity_test: site_a_test_all_samples
+    target_primary_test: site_b_primary
+    target_sensitivity_test: site_b_full_period_sensitivity
+
+metrics:
+  primary:
+    - raw_auroc
+    - raw_auprc
+    - raw_brier
+    - raw_ece
+  calibration: none_raw_probability_only
+  uncertainty: patient_cluster_percentile_bootstrap
+  default_bootstrap_replicates: 2000
+
+guardrails:
+  frozen_cohorts_and_splits_reused: true
+  evaluation_labels_used_for_hyperparameter_tuning: false
+  target_labels_used_for_training: false
+  target_labels_used_for_hyperparameter_tuning: false
+  target_labels_used_for_calibration: false
+  source_only_model_applied_unchanged_to_target: true
+  sparse_centering_disabled: true
+  output_directory_must_not_exist: true

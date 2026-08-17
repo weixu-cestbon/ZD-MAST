@@ -1,0 +1,125 @@
+analysis_id: cross_platform_like_for_like
+analysis_version: major-revision-v1
+status: protocol_frozen_pending_tower_run
+purpose: reviewer_requested_like_for_like_cross_platform_comparison
+
+sites:
+  source: ZD-MAST-A
+  target: ZD-MAST-B
+
+task_panel:
+  name: historical ten-task evaluation panel
+  task_ids:
+    - sa_oxa
+    - sa_lvx
+    - sa_gen
+    - kp_fep
+    - kp_cro
+    - kp_caz
+    - kp_cip
+    - ec_cro
+    - ec_cip
+    - ec_fep
+
+endpoint:
+  name: historical_s_vs_ir
+  negative_class: S
+  positive_classes: [I, R]
+
+feature_representation:
+  name: peak_presence6000
+  mz_min_inclusive: 2000
+  mz_max_exclusive: 20000
+  bin_width_da: 3
+  n_features: 6000
+  values: binary_peak_presence
+
+source_development:
+  analysis_id: local_temporal
+  protocol: current_workflow_protocol_b
+  split: train
+  date_definition: 2025-07-01/2026-02-28
+  rolling_origin_folds: zd_mast_protocol_b_rolling_origin_folds_public_v1.0.0.csv
+
+evaluation_cohorts:
+  source_primary:
+    site: ZD-MAST-A
+    split_source: frozen_public_split
+    analysis_id: local_temporal
+    protocol: current_workflow_protocol_b
+    split: test
+    date_definition: 2026-03-01/2026-06-09
+    patient_policy: exclude_test_rows_with_development_patient_overlap_or_missing_patient_cluster
+    role: primary_patient_disjoint_source_comparator
+  source_all_samples_sensitivity:
+    site: ZD-MAST-A
+    split_source: frozen_public_split
+    analysis_id: local_temporal
+    protocol: current_workflow_protocol_b
+    split: test
+    date_definition: 2026-03-01/2026-06-09
+    patient_policy: preserve_all_sample_workload
+    role: sensitivity_only
+  target_primary:
+    site: ZD-MAST-B
+    date_start: 2026-03-01
+    date_end: 2026-06-09
+    role: primary_like_for_like_cross_platform_test
+  target_full_period_sensitivity:
+    site: ZD-MAST-B
+    date_start: 2026-01-01
+    date_end: 2026-07-29
+    role: broader_target_period_sensitivity
+
+model:
+  primary: lightgbm
+  hyperparameter_grid: frozen_v2026_07_17_3_grid
+  tuning_domain: source_development_only
+  calibration: platt_on_source_development_oof_only
+  calibration_negative_slope_policy: mark_failure_and_preserve_raw_discrimination
+  threshold_selection_domain: source_development_oof_only
+  thresholds:
+    - youden
+    - sensitivity_90
+    - specificity_90
+  rolling_origin_patient_policy: remove_validation_rows_with_training_patient_overlap_or_missing_patient_cluster
+
+uncertainty:
+  bootstrap_unit: public_patient_cluster_id
+  fallback_unit: public_sample_id
+  bootstrap_replicates: 2000
+  interval: percentile_95
+  site_difference_method: independent_site_cluster_bootstrap
+
+minimum_support:
+  test_total_n: 100
+  test_minimum_class_n: 20
+  status_below_minimum: exploratory_or_insufficient
+
+guardrails:
+  target_labels_used_for_training: false
+  target_labels_used_for_hyperparameter_selection: false
+  target_labels_used_for_calibration: false
+  target_labels_used_for_threshold_selection: false
+  source_test_used_for_selection: false
+  source_primary_test_patient_disjoint: true
+  source_all_samples_test_sensitivity_retained: true
+  same_fitted_model_applied_to_both_sites: true
+  same_calibrator_applied_to_both_sites: true
+  same_thresholds_applied_to_both_sites: true
+  refuse_duplicate_site_sample_task_rows: true
+  refuse_source_development_test_overlap: true
+  raw_discrimination_is_primary_for_transportability: true
+
+required_outputs:
+  - cross_platform_like_for_like_cohort_counts.csv
+  - cross_platform_like_for_like_validation_findings.csv
+  - cross_platform_like_for_like_source_test_purge_audit.csv
+  - cross_platform_like_for_like_fold_purge_audit.csv
+  - cross_platform_like_for_like_metrics.csv
+  - cross_platform_like_for_like_site_differences.csv
+  - cross_platform_like_for_like_bootstrap.csv
+  - cross_platform_like_for_like_tuning.csv
+  - cross_platform_like_for_like_thresholds.csv
+  - cross_platform_like_for_like_run_manifest.json
+  - cross_platform_like_for_like_report.md

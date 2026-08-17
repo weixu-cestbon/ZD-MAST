@@ -1,0 +1,11 @@
+representation_id: intensity6000
+mz_min_inclusive: 2000.0
+mz_max_exclusive: 20000.0
+bin_width_da: 3.0
+n_features: 6000
+within_bin_aggregation: maximum
+intensity_transform: square_root
+spectrum_normalization: l2
+replicate_aggregation: arithmetic_mean
+sample_normalization: l2
+boundary_rule: "[start,end)"

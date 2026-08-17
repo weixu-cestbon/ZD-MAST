@@ -1,0 +1,25 @@
+analysis_id: same_test_training_history
+analysis_version: major-revision-v1
+parent_analysis_version: v2026.07.17.3
+site: ZD-MAST-A
+task_panel: historical_ten_task_evaluation_panel
+endpoint: historical_S_vs_IR
+feature_representation: intensity6000
+operational_marker: 2025-06-23
+transition_excluded: 2025-06-23_through_2025-06-30
+training_regimes:
+  pre_marker_history_only: before_or_on_2025-06-22
+  current_workflow_only: 2025-07-01_through_2026-02-28
+  pooled_pre_and_current: union_of_pre_marker_and_current_workflow
+test_window: 2026-03-01_through_2026-06-09
+primary_test: common_patient_disjoint_against_union_of_all_development_regimes
+sensitivity_test: identical_all_sample_test_rows
+model: lightgbm
+hyperparameters: fixed_from_current_workflow_protocol_b_same_task
+calibration: regime_specific_development_oof_platt_with_nonpositive_slope_guard
+thresholds: regime_specific_development_oof_only
+bootstrap:
+  unit: public_patient_cluster_id
+  replicates: 1000
+  paired_training_regime_delta: true
+interpretation: training_history_effect_not_causal_card_effect

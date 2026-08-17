@@ -1,0 +1,8 @@
+name: zd-mast-analysis
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements-analysis.txt

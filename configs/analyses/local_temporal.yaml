@@ -1,0 +1,42 @@
+analysis_id: local_temporal
+protocol_id: current_workflow_protocol_b
+legacy_protocol_id: B_post_marker_current_temporal
+analysis_version: v2026.07.17.3
+role: manuscript_primary_current_workflow
+site: ZD-MAST-A
+data_cutoff: 2026-06-09
+development_period:
+  start: 2025-07-01
+  end: 2026-02-28
+test_period:
+  start: 2026-03-01
+  end: 2026-06-09
+operational_workflow_transition_marker: 2025-06-23
+transition_exclusion_end: 2025-06-30
+endpoint:
+  name: historical_s_vs_ir
+  negative: S
+  positive: [I, R]
+model:
+  primary: lightgbm
+  hyperparameter_selection: rolling_origin_within_development
+  calibration: pooled_rolling_origin_out_of_fold_platt
+  threshold_source: calibrated_out_of_fold_development_predictions
+task_ids:
+  - sa_oxa
+  - sa_lvx
+  - sa_gen
+  - kp_fep
+  - kp_cro
+  - kp_caz
+  - kp_cip
+  - ec_cro
+  - ec_cip
+  - ec_fep
+grouping:
+  primary: all_sample_workload
+  sensitivity:
+    - patient_disjoint_test
+    - patient_species_30_day_episode_first
+public_split_file: feature-release-v1.0.0-rc17/zd_mast_split_assignments_public_v1.0.0.csv
+public_fold_file: feature-release-v1.0.0-rc17/zd_mast_protocol_b_rolling_origin_folds_public_v1.0.0.csv

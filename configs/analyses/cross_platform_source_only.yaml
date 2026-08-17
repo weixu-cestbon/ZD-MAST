@@ -1,0 +1,30 @@
+analysis_id: cross_platform_source_only
+analysis_version: v2026.08.03.2
+role: main_cross_platform_external_stress_test
+source_site: ZD-MAST-A
+target_site: ZD-MAST-B
+source_period_end: 2025-12-31
+target_period: 2026
+feature_representation: peak_presence6000
+feature_axis:
+  mz_min_inclusive: 2000
+  mz_max_exclusive: 20000
+  bin_width_da: 3
+  n_features: 6000
+source_split:
+  protocol: source_temporal_latest20_patient_disjoint
+  validation_fraction: 0.20
+  patient_overlap_policy: remove_overlapping_source_training_rows
+  public_file: feature-release-v1.0.0-rc17/zd_mast_split_assignments_public_v1.0.0.csv
+endpoint: historical_s_vs_ir
+model:
+  primary: lightgbm
+  calibration: platt_on_source_validation_only
+target_labels_used_for_training_or_selection: false
+minimum_evaluation_support:
+  total_n: 100
+  minimum_class_n: 20
+result_regression:
+  frozen_fields: 90
+  expected_status: PASS_90_OF_90
+interpretation: external_cross_platform_stress_test_not_deployment_qualification

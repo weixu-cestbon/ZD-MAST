@@ -1,0 +1,30 @@
+project:
+  repository: ZD-MAST
+  package: zd_mast
+  cli: zd-mast
+  code_version: v1.0.0-rc1
+dataset:
+  short_name: ZD-MAST
+  scientific_candidate: v1.0.0-rc17
+  scientific_data_base: v1.0.0-rc2
+  outer_deposition_version: EXTERNAL_MANIFEST
+  analysis_version: analysis-v1.0.0
+  legacy_analysis_version: v2026.07.17.3
+sites:
+  ZD-MAST-A:
+    public_name: Zhongda Hospital main campus
+    platform: bioMérieux VITEK MS
+  ZD-MAST-B:
+    public_name: Zhongda Hospital Jiangbei campus
+    platform: Autobio Autof MS600
+feature_representations:
+  - intensity6000
+  - peak_presence6000
+release_gates:
+  scientific_integrity: PASS
+  privacy: PASS
+  cleanroom: PASS
+  repository_url: https://github.com/weixu-cestbon/ZD-MAST
+  data_accession: 10.5281/zenodo.21927440
+  code_license: Apache-2.0
+  data_license: CC0-1.0

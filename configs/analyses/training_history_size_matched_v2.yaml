@@ -1,0 +1,42 @@
+analysis_id: training_history_size_matched_v2
+analysis_version: reviewer-r2-size-matched-v2
+parent_analysis: same_test_training_history
+site: ZD-MAST-A
+task_panel: historical_ten_task_evaluation_panel
+endpoint: historical_S_vs_IR
+feature_representation: intensity6000
+operational_marker: 2025-06-23
+transition_excluded: 2025-06-23_through_2025-06-30
+source_pools:
+  pre_marker: before_or_on_2025-06-22
+  current_workflow: 2025-07-01_through_2026-02-28
+training_regimes:
+  current_only: current_workflow_samples_only
+  pre_marker_only: pre_marker_samples_only
+  pooled_era_balanced: each_class_split_as_evenly_as_possible_between_eras
+size_matching:
+  unit: sample_task_row
+  common_class_cap: min_pre_marker_and_current_workflow_available_per_class
+  same_class_counts_across_regimes: true
+  nested_sampling_within_repeat: true
+  learning_fractions: [0.25, 0.50, 0.75, 1.00]
+  repeats: 20
+  minimum_train_class_n: 10
+test:
+  window: 2026-03-01_through_2026-06-09
+  cohort: common_patient_disjoint_against_union_of_all_source_histories
+  identical_across_regimes_fractions_and_repeats: true
+model:
+  family: lightgbm
+  hyperparameters: frozen_from_primary_metrics_same_task
+  shared_seed_across_regimes_within_task_repeat_fraction: true
+  target_test_tuning: false
+evaluation:
+  calibration: none
+  threshold_selection: none
+  metrics: [raw_auroc, raw_auprc]
+  paired_deltas:
+    - pre_marker_only_minus_current_only
+    - pooled_era_balanced_minus_current_only
+    - pooled_era_balanced_minus_pre_marker_only
+interpretation: size_and_class_matched_training_history_sensitivity_not_causal_card_effect

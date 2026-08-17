@@ -1,0 +1,91 @@
+project:
+  name: ZD-MAST
+  public_title: "ZD-MAST: a two-site, two-platform MALDI-TOF mass spectra and antimicrobial susceptibility benchmark"
+  integration_version: analysis-v1.0.0-rc1
+  legacy_primary_analysis_version: v2026.07.17.3
+  public_data_candidate: v1.0.0-rc17
+  public_scientific_data_base: v1.0.0-rc2
+  outer_deposition_version: EXTERNAL_MANIFEST
+  full_linked_ast_extension: v1.0.0-rc3
+
+sites:
+  site_a:
+    public_code: ZD-MAST-A
+    role: main-campus development and retrospective out-of-time qualification
+  site_b:
+    public_code: ZD-MAST-B
+    role: contemporaneous cross-platform external stress test and joint-development sensitivity
+
+feature_schema:
+  primary_representation: intensity6000
+  mz_min_inclusive: 2000
+  mz_max_exclusive: 20000
+  bin_width_da: 3
+  n_features: 6000
+  bin_aggregation: maximum intensity
+  transforms:
+    - square_root_intensity
+    - spectrum_level_l2
+    - replicate_mean
+    - sample_level_l2
+
+primary_endpoint:
+  name: historical_S_vs_IR
+  negative: S
+  positive: [I, R]
+  preserve_historical_labels: true
+
+task_panel:
+  name: historical ten-task evaluation panel
+  selection_status: fixed_historical_panel_not_data_driven_confirmatory_selection
+  task_ids:
+    - sa_oxa
+    - sa_lvx
+    - sa_gen
+    - kp_fep
+    - kp_cro
+    - kp_caz
+    - kp_cip
+    - ec_cro
+    - ec_cip
+    - ec_fep
+
+primary_local_protocol:
+  id: B_post_marker_current_temporal
+  role: manuscript_primary_current_workflow
+  development_start: 2025-07-01
+  development_end: 2026-02-28
+  test_start: 2026-03-01
+  test_end: 2026-06-09
+  transition_marker: 2025-06-23
+  transition_term: operational workflow-transition marker
+  model: lightgbm
+  calibration: pooled rolling-origin out-of-fold Platt calibration
+  grouping_primary: all-sample workload with patient-disjoint test
+  grouping_sensitivity: patient-species 30-day episode-first
+
+secondary_protocols:
+  historical_last20_replay:
+    role: historical comparator only
+  m100_harmonization:
+    role: parallel-label sensitivity
+  workflow_era:
+    role: transportability sensitivity
+  jiangbei_source_only:
+    role: cross-platform external stress test
+    exact_public_reproduction: PASS_90_OF_90
+  jiangbei_label_using:
+    role: joint-development or adaptation simulation
+  public_benchmarks:
+    role: compatibility-stratified stress tests
+  silent_operation:
+    role: operational feasibility only
+    statistical_performance_claim_allowed: false
+
+manuscript_guardrails:
+  retrospective_2026_term: retrospective out-of-time evaluation
+  prohibit_prospective_qualification_claim: true
+  prohibit_universal_transportability_claim: true
+  prohibit_complete_mrsa_composite_claim: true
+  prohibit_target_label_adaptation_as_external_validation: true
+  prohibit_full_month_silent_performance_claim: true

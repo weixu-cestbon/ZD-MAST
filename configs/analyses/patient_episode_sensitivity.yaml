@@ -1,0 +1,24 @@
+analysis_id: patient_episode_sensitivity
+public_analysis_version: analysis-v1.0.0
+legacy_analysis_version: v2026.07.17.3
+site: ZD-MAST-A
+feature_representation: intensity6000
+endpoint: historical_S_vs_IR
+model: lightgbm
+primary_protocol: current_workflow_protocol_b
+development_window: 2025-07-01/2026-02-28
+test_window: 2026-03-01/2026-06-09
+variants:
+  - patient_disjoint_test
+  - patient_species_30d_episode_first
+hyperparameters: fixed_from_all_samples_primary
+calibration: pooled_rolling_origin_out_of_fold_platt
+thresholds: pooled_rolling_origin_out_of_fold
+bootstrap:
+  unit: public_patient_cluster_id
+  repetitions: 1000
+test_used_for_tuning: false
+legacy_metadata_correction:
+  field: test_episode_n
+  variant: patient_disjoint_test
+  reason: legacy_checkpoint_retained_full_test_episode_count

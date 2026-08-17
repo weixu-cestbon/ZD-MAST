@@ -1,0 +1,17 @@
+archive_name,role,site,year,representation,member_count,source_bytes,compressed_bytes,sha256,source_release_candidate,deposition_version
+zd_mast_metadata_labels_splits_v1.0.0-rc1.tar.gz,metadata_labels_groups_splits,both,2019-2026,tabular,15,51476788,5881836,43931203207293223db6f7a13b443836462301ee853e368f4a089579b7fa67a8,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_intensity6000_v1.0.0-rc1.tar.gz,feature_matrices,ZD-MAST-A,2019-2026,intensity6000,2,3085320256,117687628,4939ee9010780a856fff2988ad4371fc213ee6d5b1203e738076588bafc18334,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_peak_presence6000_v1.0.0-rc1.tar.gz,feature_matrices,ZD-MAST-A,2019-2026,peak_presence6000,2,771330256,35322682,f037d64b7d80fde0088b346f6f5271048710ecca9a012528747ee1c6d33e28b4,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_b_intensity6000_v1.0.0-rc1.tar.gz,feature_matrices,ZD-MAST-B,2025-2026,intensity6000,2,378456256,235608415,295ea88a2027c484850d4dcdfcae61b268b5b569411dd626ef0e5551dd778484,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_b_peak_presence6000_v1.0.0-rc1.tar.gz,feature_matrices,ZD-MAST-B,2025-2026,peak_presence6000,2,94614256,4304899,ad51fb6b5f6ad3c67cf62b5eb31aa317f1e1ab2ad26cc458398ae10124ccf06b,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2019_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2019,open_peak_table,4354,15916710,8651027,4923f383bb51d4593e9f561aa2152ebd01b5b04ff958f31769ae52a6ace0c3d8,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2020_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2020,open_peak_table,5872,16450233,9006786,191cd959651c12b5cce6c750a728b038ad55ae615f7253a713ff001a52a35b46,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2021_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2021,open_peak_table,8658,24183477,13238068,f634c20790973452007128f0d0859069e0e62067699ac9e34e63d05294604175,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2022_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2022,open_peak_table,7526,19898301,10911529,1eef977311c12a61d8150ef3e6380620c3e3cdd9d997a464cb90f5d2597cc0b0,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2023_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2023,open_peak_table,13153,34743017,19045027,cce8b7bc97751fe39bba8480ce272687cc933f360108346367430c938c0adde6,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2024_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2024,open_peak_table,12017,30150792,16563762,ceaecf3dfcbbac308845fe14c03584f1536d15c6f10bf761491c2005c066f02a,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2025_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2025,open_peak_table,12914,32858663,18050925,a87e19e5cd073be80d93a2a80d94fe66b70bd08d5811120d6df1fcf75d92cbb9,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_a_open_peak_tables_2026_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-A,2026,open_peak_table,5842,13459865,7421290,fe86d16591e4d0c239b40a5d06b2dff172e6788c473ad93552ca35a07ad99ef3,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_b_open_peak_tables_2025_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-B,2025,open_peak_table,4126,1417664836,641356389,77a7eeeff665b37f78f43f5d7593f0066773b18a1f69ebf8e3b91fa6340e5a06,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_b_open_peak_tables_2026_v1.0.0-rc1.tar.gz,open_peak_tables,ZD-MAST-B,2026,open_peak_table,5251,1794549490,809519408,f9024afc4cddc5bafb6a96d5b6cc3570b591050f8f163c410903ad2b90227a8f,v1.0.0-rc13,v1.0.0-rc1
+zd_mast_full_linked_ast_v1.0.0-rc2.tar.gz,all_linked_ast_measurements_labels_and_qc,both,2019-2026,tabular,9,10959759,7642317,638bf22f8e85d594ce084b5462c3aba58079a4101b8738edfad2af8911f34689,v1.0.0-rc13+full-ast-v1.0.0-rc3,v1.0.0-rc2
